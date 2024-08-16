@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.file-list-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.file-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.file-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.file-name {
+  flex: 1;
+  color: #333;
+  font-weight: bold;
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.download-button,
+.delete-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.download-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.download-button:disabled {
+  background-color: #a3d4ff;
+  cursor: not-allowed;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:disabled {
+  background-color: #f5a3ab;
+  cursor: not-allowed;
+}
+
+.download-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.delete-button:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.upload-file-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.file-input {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.file-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.upload-button,
+.login-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button {
+  background-color: #007bff;
+}
+
+.upload-button:disabled {
+  background-color: #a3d4ff;
+  cursor: not-allowed;
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.login-button {
+  background-color: #28a745;
+}
+
+.login-button:hover {
+  background-color: #218838;
+}
