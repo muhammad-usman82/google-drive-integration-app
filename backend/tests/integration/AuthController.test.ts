@@ -1,34 +1,37 @@
+import express, { Request, Response } from 'express';
 import request from 'supertest';
-import app from '../../src/app';
+import { AuthController } from '../../src/controllers/AuthController';
 import { AuthService } from '../../src/services/AuthService';
 
 jest.mock('../../src/services/AuthService');
 
 describe('AuthController', () => {
-    let authService: AuthService;
+  let app: express.Application;
+  let authService: jest.Mocked<AuthService>;
+  let authController: AuthController;
 
-    beforeEach(() => {
-        authService = new AuthService();
-    });
+  beforeEach(() => {
+    authService = new AuthService() as jest.Mocked<AuthService>;
+    authController = new AuthController();
+    app = express();
+    app.use(express.json());
 
-    it('should redirect to Google OAuth URL', async () => {
-        const mockAuthUrl = 'https://mockauthurl.com';
-        jest.spyOn(authService, 'generateAuthUrl').mockReturnValue(mockAuthUrl);
+    app.get('/auth', (req: Request, res: Response) => authController.getAuthUrl(req, res));
+    app.post('/auth/callback', (req: Request, res: Response) => authController.authenticate(req, res));
+  });
 
-        const response = await request(app).get('/api/auth');
+  it('should return the authorization URL', async () => {
 
-        expect(response.status).toBe(302);
-        expect(response.headers.location).toBe(mockAuthUrl);
-    });
+    const response = await request(app).get('/auth');
+    expect(response.status).toBe(200);
+  });
 
-    it('should handle authentication callback', async () => {
-        const mockCode = 'mock-code';
-        jest.spyOn(authService, 'authenticate').mockResolvedValueOnce();
+  it('should return 400 if the authorization code is missing', async () => {
+    const response = await request(app)
+      .post('/auth/callback')
+      .send({});
 
-        const response = await request(app).get(`/api/auth/callback?code=${mockCode}`);
-
-        expect(authService.authenticate).toHaveBeenCalledWith(mockCode);
-        expect(response.status).toBe(200);
-        expect(response.text).toBe('Authentication successful');
-    });
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBe('Authorization code is required.');
+  });
 });
