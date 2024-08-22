@@ -44,17 +44,6 @@ h2 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.file-name {
-  flex: 1;
-  color: #333;
-  font-weight: bold;
-}
-
-.file-actions {
-  display: flex;
-  gap: 10px;
-}
-
 .download-button,
 .delete-button {
   padding: 8px 12px;
@@ -156,4 +145,29 @@ h2 {
 
 .login-button:hover {
   background-color: #218838;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+.file-type, .file-modified {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.file-type {
+  margin-bottom: 5px;
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
 }

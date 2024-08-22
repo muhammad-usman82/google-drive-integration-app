@@ -7,6 +7,8 @@ interface FileListProps {
   files: {
     id: string;
     name: string;
+    modifiedTime: string;
+    mimeType: string;     
   }[];
   onRefresh: () => void;
 }
@@ -67,7 +69,11 @@ export const FileList: React.FC<FileListProps> = ({ files, onRefresh }) => {
       <ul className="file-list">
         {files.map((file) => (
           <li key={file.id} className="file-list-item">
-            <span className="file-name">{file.name}</span>
+            <div className="file-details">
+              <span className="file-name">{file.name}</span>
+              <span className="file-type">{file.mimeType}</span>
+              <span className="file-modified">{new Date(file.modifiedTime).toLocaleString()}</span>
+            </div>
             <div className="file-actions">
               <button
                 onClick={() => handleDownload(file.id, file.name)}
